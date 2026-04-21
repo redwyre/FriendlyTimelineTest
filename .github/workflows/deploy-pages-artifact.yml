@@ -12,6 +12,11 @@ jobs:
       contents: read
       pages: write
       id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Download source build artifact
         uses: actions/download-artifact@v8
@@ -22,6 +27,9 @@ jobs:
           github-token: ${{ secrets.REPOSTITORY_PAYLOAD_TOKEN }}
           repository: "redwyre/FriendlyTimeline"
           skip-decompress: true
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
 
       - name: Upload Pages artifact
         uses: actions/upload-artifact@v7
