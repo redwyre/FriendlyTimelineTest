@@ -19,7 +19,7 @@ jobs:
           artifact-ids: ${{ github.event.client_payload.artifact_id }}
           run-id: ${{ github.event.client_payload.run_id }}
           path: extracted-site
-          github-token: ${{ github.token }}
+          github-token: ${{ secrets.REPOSTITORY_PAYLOAD_TOKEN }}
           repository: "redwyre/FriendlyTimeline"
           skip-decompress: true
 
