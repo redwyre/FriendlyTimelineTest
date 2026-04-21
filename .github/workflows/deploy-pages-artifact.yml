@@ -8,11 +8,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
+      actions: read
+      contents: read
       pages: write
       id-token: write
     steps:
+      - name: Download source build artifact
+        uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ github.event.client_payload.artifact_id }}
+          path: extracted-site
+          github-token: ${{ github.token }}
+          repository: "redwyre/FriendlyTimeline"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: extracted-site
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
-        with:
-          artifact_id: ${{ github.event.client_payload.artifact_id }}
