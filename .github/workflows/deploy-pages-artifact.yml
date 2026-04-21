@@ -27,6 +27,18 @@ jobs:
           github-token: ${{ secrets.REPOSTITORY_PAYLOAD_TOKEN }}
           repository: "redwyre/FriendlyTimeline"
 
+      - name: Delete github-pages artifact
+        run: rm ./github-pages.zip
+        working-directory: extracted-site
+
+      - name: Extract content
+        run: tar -xvf ./artifact.tar
+        working-directory: extracted-site
+
+      - name: Delete artifact
+        run: rm ./artifact.tar
+        working-directory: extracted-site
+
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
