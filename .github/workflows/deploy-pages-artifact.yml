@@ -17,14 +17,17 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{ github.event.client_payload.artifact_id }}
+          run-id: ${{ github.event.client_payload.run_id }}
           path: extracted-site
           github-token: ${{ github.token }}
           repository: "redwyre/FriendlyTimeline"
+          skip-decompress: true
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           path: extracted-site
+          name: github-pages
 
       - name: Deploy to GitHub Pages
         id: deployment
