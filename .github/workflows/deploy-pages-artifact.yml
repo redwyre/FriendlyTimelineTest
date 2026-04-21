@@ -26,16 +26,14 @@ jobs:
           path: extracted-site
           github-token: ${{ secrets.REPOSTITORY_PAYLOAD_TOKEN }}
           repository: "redwyre/FriendlyTimeline"
-          skip-decompress: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
       - name: Upload Pages artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-pages-artifact@v5
         with:
           path: extracted-site
-          name: github-pages
 
       - name: Deploy to GitHub Pages
         id: deployment
