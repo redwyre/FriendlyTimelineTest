@@ -2,7 +2,7 @@ name: Deploy Pages Artifact
 
 on:
   repository_dispatch:
-    types: [ deploy-pages-from-artifact ]
+    types: [deploy-pages-from-artifact]
 
 jobs:
   deploy:
@@ -27,6 +27,10 @@ jobs:
           github-token: ${{ secrets.REPOSTITORY_PAYLOAD_TOKEN }}
           repository: "redwyre/FriendlyTimeline"
 
+      - name: Show files 1
+        run: ls -R
+        working-directory: extracted-site
+
       # - name: Delete github-pages artifact
       #   run: rm ./github-pages.zip
       #   working-directory: extracted-site
@@ -37,6 +41,10 @@ jobs:
 
       - name: Delete artifact
         run: rm ./artifact.tar
+        working-directory: extracted-site
+
+      - name: Show files 2
+        run: ls -R
         working-directory: extracted-site
 
       - name: Setup Pages
